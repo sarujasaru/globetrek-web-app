@@ -1,0 +1,30 @@
+/* Custom smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom card shadow for the image aesthetic */
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+/* Hero text gradient shadow for legibility */
+h1 {
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth input transitions */
+input {
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    transform: scale(1.02);
+}
+body {
+    font-family: 'Inter', sans-serif; /* Recommended for a clean UI */
+}
+
+input:focus {
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}

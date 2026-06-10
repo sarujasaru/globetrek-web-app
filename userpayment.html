@@ -1,0 +1,102 @@
+<div class="animate-in fade-in duration-700 w-full p-4 lg:p-8">
+    <header class="mb-10">
+        <h1 class="font-headline text-5xl font-bold text-gt-blue leading-tight mb-2">Complete Your Booking</h1>
+        <p class="text-gray-500 font-sans">Secure your trip in just a few simple steps.</p>
+    </header>
+
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <div class="xl:col-span-2 space-y-8">
+            
+            <div class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold">1</div>
+                    <h2 class="text-xl font-bold text-blue-900 font-sans">Step 1: Traveler Details</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-2">Full Name</label>
+                        <input type="text" id="travelerName" placeholder="John Doe" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-orange-500 transition-all outline-none text-sm font-sans">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-2">Email Address</label>
+                        <input type="email" id="travelerEmail" placeholder="john@example.com" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-orange-500 transition-all outline-none text-sm font-sans">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold">2</div>
+                    <h2 class="text-xl font-bold text-blue-900 font-sans">Step 2: Trip Customization</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-2">Travel Date</label>
+                        <input type="date" id="travelDate" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-orange-500 transition-all outline-none text-sm text-gray-500 font-sans">
+                    </div>
+                    <div class="flex flex-col">
+    <label class="text-xs text-gray-400 font-bold mb-2">NUMBER OF TRAVELERS</label>
+    <input type="number" id="travelerCount" value="1" min="1" 
+           class="w-full p-4 rounded-2xl border border-gt-border focus:outline-none focus:border-gt-orange">
+</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold">3</div>
+                    <h2 class="text-xl font-bold text-blue-900 font-sans">Step 3: Payment Method</h2>
+                </div>
+               <div class="grid grid-cols-2 gap-4 mb-8">
+    <button id="creditCardOption" class="p-4 border-2 border-blue-100 bg-blue-50 rounded-2xl font-bold text-blue-700 text-sm font-sans transition-all">Credit Card</button>
+    <button id="paypalOption" class="p-4 border border-gray-200 bg-gray-50 rounded-2xl font-bold text-gray-400 text-sm font-sans transition-all">PayPal</button>
+</div>
+
+<div id="creditCardFields" class="space-y-4">
+    <input type="text" placeholder="Card Number" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl outline-none focus:bg-white focus:border-orange-500 transition-all text-sm font-sans">
+    <div class="grid grid-cols-2 gap-4">
+        <input type="text" placeholder="MM/YY" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl outline-none focus:bg-white focus:border-orange-500 transition-all text-sm font-sans">
+        <input type="password" placeholder="CVV" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl outline-none focus:bg-white focus:border-orange-500 transition-all text-sm font-sans">
+    </div>
+</div>
+
+<div id="paypalMessage" class="hidden p-6 border-2 border-dashed border-blue-200 rounded-2xl text-center bg-blue-50">
+    <p class="text-blue-600 font-bold">You will be redirected to PayPal safely after clicking Confirm Booking.</p>
+</div>
+            </div>
+
+            <button id="confirmBookingBtn" onclick="handleBooking()"class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 rounded-[2rem] shadow-lg transition-all text-lg tracking-widest uppercase font-sans">
+                Confirm Booking
+            </button>
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-white rounded-[2.5rem] overflow-hidden border border-gray-200 shadow-lg">
+                <div class="relative h-56 bg-gray-200">
+                    <img id="payTripImg" src="" class="w-full h-full object-cover" alt="Destination">
+                </div>
+
+                <div class="p-8">
+                    <h3 id="payTripName" class="text-2xl font-bold text-blue-900 mb-6 font-sans">Loading Trip...</h3>
+                    <div class="space-y-4 pb-6 border-b border-dashed border-gray-200">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Package Price</span>
+                            <span id="payPackagePrice" class="font-bold text-blue-900">LKR0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Taxes & Fees</span>
+                            <span class="font-bold text-blue-900">LKR245.50</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-8">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest font-sans">Total Price</p>
+                        </div>
+                        <h2 id="payTotal" class="text-xl font-black text-blue-900 tracking-tight font-sans">LKR 0.00</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

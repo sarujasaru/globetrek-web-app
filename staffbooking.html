@@ -1,0 +1,123 @@
+<!-- staffbooking.html -->
+<div class="p-8 bg-slate-50 min-h-screen">
+    <header class="mb-10">
+        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Management Hub</p>
+        <h1 class="font-headline text-6xl font-bold text-gt-blue leading-tight mb-4">Booking Details</h1>
+    </header>
+
+    <!-- Stats Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Active Reserves</p>
+            <!-- ID Added: total-active -->
+            <h2 id="total-active" class="text-5xl font-bold text-gt-blue my-4">0</h2>
+            <p class="text-green-500 text-[10px] font-bold">↑ Updated live</p>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Pending Confirmation</p>
+            <!-- ID Added: total-pending -->
+            <h2 id="total-pending" class="text-5xl font-bold text-gt-blue my-4">0</h2>
+            <p class="text-orange-500 text-[10px] font-bold">⏳ Requires action</p>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Revenue Forecast</p>
+            <!-- ID Added: total-revenue -->
+            <h2 id="total-revenue" class="text-5xl font-bold text-gt-blue my-4">$0</h2>
+            <p class="text-gray-500 text-[10px] font-bold">📊 Total Booking Value</p>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Satisfaction Score</p>
+            <h2 class="text-5xl font-bold text-gt-blue my-4">4.9/5</h2>
+            <p class="text-blue-500 text-[10px] font-bold">★ Community Rating</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <div class="xl:col-span-2 bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-bold text-gt-blue">Recent Reservations</h2>
+                
+                <div class="flex bg-gray-100/50 p-1 rounded-xl">
+    <button id="tab-all" onclick="renderTableByStatus('all')" class="bg-white px-4 py-2 rounded-lg text-[10px] font-bold shadow-sm text-gt-blue">All Bookings</button>
+    <button id="tab-pending" onclick="renderTableByStatus('pending')" class=" px-4 py-2 rounded-lg text-[10px] font-bold text-gray-500 hover:text-gt-blue">Pending</button>
+    <button id="tab-confirmed" onclick="renderTableByStatus('confirmed')" class=" px-4 py-2 rounded-lg text-[10px] font-bold text-gray-500 hover:text-gt-blue">Confirmed</button>
+</div>
+
+                <div class="flex gap-2">
+                   
+                    <button onclick="exportBookings()" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-xl text-xs font-bold hover:bg-gray-200">
+    Export
+</button>
+                </div>
+            </div>
+            
+           
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-[10px] text-gray-400 uppercase border-b border-gray-100">
+                            <th class="pb-5">Booking ID</th>
+                            <th class="pb-5">Customer Name</th>
+                            <th class="pb-5">Expedition Name</th>
+                            <th class="pb-5">Dates</th>
+                            <th class="pb-5">Status</th>
+                            <th class="pb-5">Actions</th>
+                        </tr>
+                    </thead>
+                    <!-- ID Added: bookings-list | Content removed for JS injection -->
+                    <tbody id="bookings-list" class="divide-y divide-gray-100 text-sm">
+                        <tr>
+                            <td colspan="6" class="py-10 text-center text-gray-400 animate-pulse">
+                                Loading dynamic bookings...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sidebar / Help Section -->
+        <div class="space-y-8">
+            <div class="bg-gt-blue p-8 rounded-[2rem] text-white">
+                <h2 class="text-xl font-bold mb-4">Need Help?</h2>
+                <p class="text-sm text-blue-100 mb-6">Our expedition supervisors are available 24/7 to assist with urgent booking modifications.</p>
+                <button class="w-full bg-orange-600 py-3 rounded-2xl font-bold text-sm hover:bg-orange-700 transition-colors">Contact Supervisor</button>
+            </div>
+            
+            <!-- Quick Tips Card (Optional Addition) -->
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                <h3 class="font-bold text-gt-blue mb-4 text-lg">Staff Guidelines</h3>
+                <ul class="text-xs space-y-4 text-gray-500 font-medium">
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full mt-1 shrink-0"></span>
+                        Confirm pending bookings within 2 hours.
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mt-1 shrink-0"></span>
+                        Verify customer contact details before confirmation.
+                    </li>
+                </ul>
+            </div>
+            <!-- Booking Details Modal -->
+<div id="bookingModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all">
+        <!-- Header -->
+        <div class="bg-gt-blue p-6 text-white flex justify-between items-center">
+            <h3 class="font-bold text-lg">Booking Details</h3>
+            <button onclick="closeModal()" class="text-white/80 hover:text-white text-2xl">&times;</button>
+        </div>
+        
+        <!-- Content -->
+        <div id="modalContent" class="p-8 space-y-6">
+            <!-- Data will be injected here -->
+        </div>
+
+        <!-- Footer -->
+        <div class="p-6 bg-gray-50 border-t flex justify-end">
+            <button onclick="closeModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-300 transition-all">Close</button>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>

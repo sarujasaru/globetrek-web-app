@@ -1,0 +1,50 @@
+<div class="p-8 bg-slate-50 min-h-screen">
+    <header class="mb-10">
+        <h1 class="font-headline text-6xl font-bold text-gt-blue leading-tight mb-4">Staff & User Management</h1>
+          <p class="text-slate-500 mt-1 font-medium">Manage all registered members and their roles.</p>
+    </header>
+
+    <!-- Stats Cards: இவை தானாக அப்டேட் ஆகும் -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Total Workforce</p>
+            <h2 id="mgmt-total-users" class="text-5xl font-bold text-gt-blue my-4">0</h2>
+            <div class="flex gap-2">
+                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-lg text-[10px] font-bold">+12% this month</span>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Premium Customers</p>
+            <h2 id="mgmt-customers" class="text-5xl font-bold text-gt-blue my-4">0</h2>
+            <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">★</div>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">System Admins</p>
+            <h2 id="mgmt-admins" class="text-5xl font-bold text-gt-blue my-4">0</h2>
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">🛡️</div>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <p class="text-[10px] font-bold text-gray-400 uppercase">Deactivated</p>
+            <h2 id="mgmt-deactivated" class="text-5xl font-bold text-gt-blue my-4">0</h2>
+            <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600">🚫</div>
+        </div>
+    </div>
+
+    <!-- User Table -->
+    <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="text-[10px] font-bold text-gray-400 uppercase border-b border-gray-100">
+                    <th class="pb-5">Full Name & Identification</th>
+                    <th class="pb-5">Access Role</th>
+                    <th class="pb-5">Contact Details</th>
+                    <th class="pb-5">Current Status</th>
+                    <th class="pb-5 text-right">Administrative Actions</th>
+                </tr>
+            </thead>
+            <tbody id="mgmt-user-table-body" class="divide-y divide-gray-100">
+                <!-- Data will load here via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>

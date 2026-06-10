@@ -1,0 +1,96 @@
+<div class="p-8 bg-slate-50 min-h-screen">
+    <header class="mb-10">
+        <h1 class="font-headline text-6xl font-bold text-gt-blue leading-tight mb-4">The Personal Record</h1>
+        <p class="text-gray-500">Curate your identity and secure your global access.</p>
+    </header>
+
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <div class="space-y-8">
+            <div class="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm text-center">
+                <div class="relative inline-block mb-4">
+    <img id="display-profile-img" src="https://ui-avatars.com/api/?name=User&background=random" alt="Profile" class="w-32 h-32 rounded-full border-4 border-slate-50 object-cover">
+    
+    <!-- மறைமுகமான File Input -->
+    <input type="file" id="profile-upload" accept="image/*" class="hidden" onchange="uploadProfilePhoto(event)">
+    
+    <!-- கேமரா பட்டன் கிளிக் செய்தால் Input திறக்கும் -->
+    <button onclick="document.getElementById('profile-upload').click()" class="absolute bottom-0 right-0 bg-blue-900 p-2 rounded-full text-white border-4 border-white hover:scale-110 transition-transform">
+        📷
+    </button>
+</div>
+                <h2 id="display-fullname" class="text-2xl font-bold text-slate-900">Loading...</h2>
+                <p id="display-status" class="text-sm text-gray-500 mb-4">Explorer Status: --</p>
+                <span id="display-tier" class="bg-orange-100 text-orange-700 px-4 py-1 rounded-full text-[10px] font-bold uppercase">Member</span>
+            </div>
+
+            <!-- Travel Stats பகுதி -->
+<div class="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
+    <h3>Travel Stats</h3>
+    <p>Countries Visited: <span id="countries-visited-count">0</span></p>
+    <p>Expedition Goal: <span id="expedition-goal-percent">0% Complete</span></p>
+    
+    <!-- Progress Bar (வெள்ளை/சாம்பல் நிறக் கோடு) -->
+    <div class="progress-bg" style="background: #eee; height: 10px; border-radius: 5px;">
+        <div id="goal-progress-bar" style="background: #ff5722; height: 100%; width: 0%; border-radius: 5px; transition: width 0.5s;"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="xl:col-span-2 space-y-8">
+            <div class="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm">
+                <h3 class="font-bold text-slate-900 mb-8 flex items-center gap-2">👤 Identity & Contact</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Full Name</label>
+                        <input type="text" id="prof-fullname" placeholder="Full Name" class="w-full bg-slate-50 p-4 rounded-2xl border mt-1 focus:outline-none">
+                    </div>
+                    <div>
+                       <label class="text-[10px] font-bold text-gray-400 uppercase">Email Address</label>
+                       <input type="email" id="prof-email" placeholder="Enter email" 
+                          class="w-full bg-slate-50 p-4 rounded-2xl border mt-1 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Phone Number</label>
+                        <input type="text" id="prof-phone" placeholder="+1..." class="w-full bg-slate-50 p-4 rounded-2xl border mt-1 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Preferred Language</label>
+                        <select id="prof-lang" class="w-full bg-slate-50 p-4 rounded-2xl border mt-1 focus:outline-none">
+                            <option value="English (US)">English (US)</option>
+                            <option value="Tamil">Tamil</option>
+                            <option value="French">French</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase">Primary Residence Address</label>
+                    <textarea id="prof-address" placeholder="Your address here..." class="w-full bg-slate-50 p-4 rounded-2xl border mt-1 h-24 focus:outline-none"></textarea>
+                </div>
+                <button onclick="updateUserProfile(event)" class="mt-8 bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-orange-700 transition-all active:scale-95">Save Changes</button>
+            </div>
+
+            <div class="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm">
+                <h3 class="font-bold text-slate-900 mb-8 flex items-center gap-2">🛡️ Fortress & Security</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div><label class="text-[10px] font-bold text-gray-400 uppercase">Current Password</label><input type="password" id="curr-password" class="w-full bg-slate-50 p-4 rounded-2xl border mt-1" placeholder="********"></div>
+                    <div><label class="text-[10px] font-bold text-gray-400 uppercase">New Password</label><input type="password" id="new-password" class="w-full bg-slate-50 p-4 rounded-2xl border mt-1" placeholder="********"></div>
+                    <div><label class="text-[10px] font-bold text-gray-400 uppercase">Confirm New Password</label><input type="password" id="confirm-password" class="w-full bg-slate-50 p-4 rounded-2xl border mt-1" placeholder="********"></div>
+                </div>
+               <!-- உதாரணமாக இப்படி இருக்க வேண்டும் -->
+<div class="security-item">
+    <span>Two-Factor Authentication</span>
+    <input type="checkbox" id="two-factor-check"> 
+</div>
+                <button onclick="updateUserPassword(event)" class="mt-8 bg-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold hover:bg-slate-300 transition-all active:scale-95">Update Security</button>
+            </div>
+
+            <div class="bg-rose-50 p-8 rounded-[2.5rem] border border-rose-100 flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-rose-900">Deactivate Account</h3>
+                    <p class="text-sm text-rose-700">Permanently remove your account and all travel history.</p>
+                </div>
+                <button onclick="deactivateAccount()" class="deactivate-btn">Deactivate</button>
+            </div>
+        </div>
+    </div>
+</div>

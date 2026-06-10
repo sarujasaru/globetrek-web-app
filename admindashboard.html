@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | GlobeTrek Expedition Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        globetrek: {
+                            dark: '#0A1D3A', // Sidebar & Text
+                            blue: '#1E3A8A', // Primary Blue
+                            orange: '#E65F2B', // New Trip Button
+                            bg: '#F3F4F6', // Light Gray BG
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'headline': ['Volkhov', 'serif']
+                    }
+                    
+                }
+            }
+        }
+    </script>
+    <!-- SweetAlert2 CSS & JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+    /* மேப் கன்டெய்னர் சரியாகத் தெரிய இது அவசியம் */
+    #map { 
+        background: #0f172a; /* லோட் ஆகும் வரை கருப்பு நிறத்தில் இருக்கும் */
+    }
+</style>
+</head>
+<body class="bg-globetrek-bg flex min-h-screen font-sans text-globetrek-dark">
+
+    <aside class="w-64 bg-white border-r border-gray-100 flex flex-col justify-between p-6 fixed h-screen top-0 left-0 z-50">
+        <div>
+            <div class="flex items-center gap-3 mb-10">
+               <img src="https://img.pikbest.com/origin/09/22/51/59JpIkbEsTVCG.png!sw800" alt="GlobeTrek Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <div class="font-bold text-lg text-globetrek-dark">GlobeTrek Admin</div>
+                    <div class="text-xs text-gray-400 tracking-wider">EXPEDITION CONTROL</div>
+                </div>
+            </div>
+
+           <nav class="space-y-3">
+    <button id="nav-dashboard" onclick="showDashboard(); setActive('dashboard')" class="nav-btn flex w-full items-center gap-3.5 p-3 rounded-xl transition-all text-sm bg-blue-50/70 text-gt-blue">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        Dashboard
+    </button>
+
+    <button id="nav-usermanagement" onclick="loadUserManagement(); setActive('usermanagement')" class="nav-btn flex w-full items-center gap-3.5 p-3 rounded-xl transition-all text-sm bg-blue-50/70 text-gt-blue">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+        User Management
+    </button>
+    
+    <button id="nav-operation" onclick="loadOperation(); setActive('operation')"  class="nav-btn flex w-full items-center gap-3.5 p-3 rounded-xl transition-all text-sm bg-blue-50/70 text-gt-blue">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+        Operations
+    </button>
+    
+    <button id="nav-setting" onclick="loadSetting(); setActive('setting')"  class="nav-btn flex w-full items-center gap-3.5 p-3 rounded-xl transition-all text-sm bg-blue-50/70 text-gt-blue">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        Settings
+    </button>
+</nav>
+        </div>
+
+        <div class="space-y-5">
+           
+            <button id="logoutBtn" class="flex items-center gap-3 text-gray-500 hover:text-red-600 w-full p-2 text-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Logout
+            </button>
+        </div>
+    </aside>
+
+    <nav class="fixed top-0 left-64 right-0 z-50 px-8 py-4 bg-white/70 backdrop-blur-md border-b border-white/20 flex justify-between items-center">
+    <div class="relative w-96">
+        <input type="text" placeholder="Search operations, users, settings..." 
+               class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white/50 border border-gray-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+        <svg class="absolute left-3 top-3 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </div>
+
+    <div class="flex items-center gap-6">
+        <button class="relative p-2 text-gray-500 hover:text-gt-blue transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+        </button>
+
+        <div class="flex items-center gap-3 pl-6 border-l border-gray-200">
+            <div class="text-right">
+                <p class="text-sm font-bold text-gt-blue">Admin</p>
+                <p class="text-[10px] text-gray-400 uppercase">System Root</p>
+            </div>
+            <img src="https://i.pravatar.cc/40?u=admin" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+        </div>
+    </div>
+</nav>
+
+   <main id="main-content" class="flex-1 ml-64 p-10 xl:p-14">
+        <div id="dashboard-view">
+        <header class="flex justify-between items-center mb-10">
+            
+        </header>
+
+        <div class="relative bg-globetrek-dark rounded-3xl p-12 mb-10 overflow-hidden min-h-[280px] flex items-center">
+            <img src="https://www.shutterstock.com/image-photo/airplane-sky-flight-sunset-evening-600nw-2649738341.jpg" alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-30">
+            <div class="relative z-10 max-w-2xl text-white">
+                <h2 class="font-headline text-6xl font-bold text-gt-blue leading-tight mb-4">Expedition Overview</h2>
+                <p class="text-gray-200 text-lg leading-relaxed">Monitor your global travel operations, manage the trekking staff, and analyze the horizon of your business growth.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-10">
+    <!-- Monthly Sales Revenue -->
+    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+        <div class="flex justify-between items-center mb-6">
+            <p class="text-sm font-semibold text-gray-500 tracking-wider">MONTHLY SALES REVENUE</p>
+            <span id="sales-percentage" class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">+12.5%</span>
+        </div>
+        <!-- ID added for Sales Amount -->
+        <h3 id="monthly-sales-amt" class="text-4xl font-extrabold text-globetrek-blue mb-8">LKR0.00</h3>
+        <div class="flex items-end gap-2 h-20">
+            <div class="flex-1 bg-gray-100 rounded-t h-12"></div>
+            <div class="flex-1 bg-gray-100 rounded-t h-16"></div>
+            <div class="flex-1 bg-gray-100 rounded-t h-14"></div>
+            <div class="flex-1 bg-gray-100 rounded-t h-20"></div>
+            <div class="flex-1 bg-gray-100 rounded-t h-18"></div>
+            <!-- Main highlight bar -->
+            <div id="sales-bar-active" class="flex-1 bg-globetrek-blue rounded-t h-24"></div>
+            <div class="flex-1 bg-gray-100 rounded-t h-16"></div>
+        </div>
+        <div class="flex text-xs text-gray-400 mt-2 text-center uppercase tracking-wider">
+            <span class="flex-1">Jan</span><span class="flex-1">Feb</span><span class="flex-1">Mar</span><span class="flex-1">Apr</span><span class="flex-1">May</span><span class="flex-1">Jun</span><span class="flex-1">Jul</span>
+        </div>
+    </div>
+
+    <!-- Total Bookings -->
+    <div class="bg-globetrek-blue p-8 rounded-3xl text-white shadow-xl shadow-blue-500/10">
+        <p class="text-sm font-semibold text-blue-100 tracking-wider mb-6">TOTAL BOOKINGS</p>
+        <!-- ID added for Total Bookings -->
+        <h3 id="total-bookings-count" class="text-5xl font-extrabold mb-12">0</h3>
+        <div class="flex justify-between text-sm mb-2">
+            <span class="text-blue-200">Completed</span>
+            <!-- ID added for Completed Count -->
+            <span id="completed-bookings" class="font-bold">0</span>
+        </div>
+        <div class="w-full bg-blue-700 rounded-full h-2.5 mb-2">
+            <!-- ID added for Progress Bar -->
+            <div id="booking-progress-bar" class="bg-globetrek-orange h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+        <!-- ID added for Target Text -->
+        <p id="target-reached-text" class="text-xs text-blue-200">0% Target reached for Q3</p>
+    </div>
+
+    <!-- Customer Activity -->
+    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+        <p class="text-sm font-semibold text-gray-500 tracking-wider mb-8">CUSTOMER ACTIVITY</p>
+        <div class="space-y-6">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+                <div>
+                    <div class="text-xs text-gray-400">New Registrations</div>
+                    <!-- ID added for New Registrations -->
+                    <div id="new-registrations" class="font-extrabold text-globetrek-blue text-xl">0</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-green-50 text-green-500 rounded-2xl flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </div>
+                <div>
+                    <div class="text-xs text-gray-400">Active Logins</div>
+                    <!-- ID added for Active Logins -->
+                    <div id="active-logins" class="font-extrabold text-globetrek-blue text-xl">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-10">
+    <div class="xl:col-span-2 bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm overflow-x-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-xl font-bold text-globetrek-dark">Staff & User Management</h2>
+            <!-- Navigating to users.html -->
+           <button onclick="loadUserManagement()" class="text-orange-600 font-bold hover:underline">
+    View All Members
+</button>
+        </div>
+        
+        <table class="w-full text-left text-sm">
+            <thead class="text-gray-400 uppercase tracking-wider text-[10px] font-bold border-b border-gray-50">
+                <tr>
+                    <th class="pb-4 px-2">Member</th>
+                    <th class="pb-4 px-2">Role</th>
+                    <th class="pb-4 px-2">Status</th>
+                    <th class="pb-4 text-right px-2">Action</th>
+                </tr>
+            </thead>
+            <!-- Firebase data will load here -->
+            <tbody id="userTableBody" class="divide-y divide-gray-50">
+                <!-- Fallback Loading State -->
+                <tr>
+                    <td colspan="4" class="py-10 text-center text-gray-400 italic">
+                        Connecting to database...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+            <!-- System Activity Card -->
+<div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+    <h2 class="text-xl font-bold text-globetrek-dark mb-8">System Activity</h2>
+    
+    <!-- Dynamic Content Container -->
+    <div id="system-activity-list" class="space-y-6 text-sm">
+        <!-- ஜாவாஸ்கிரிப்ட் மூலம் தரவுகள் இங்கே தானாக லோட் ஆகும் -->
+        <div class="flex items-center justify-center py-4 text-gray-400">
+            <span>Loading recent activity...</span>
+        </div>
+    </div>
+
+    <!-- View All Button -->
+    <button onclick="window.location.href='activities.html'" class="w-full mt-10 text-center text-sm font-semibold text-globetrek-blue hover:underline">
+    View All Activity
+</button>
+</div>
+        </div>
+
+       <section class="mb-10">
+    <h2 class="text-xl font-bold text-globetrek-dark mb-6">Regional Performance</h2>
+    <!-- இங்கே id="regionalPerformanceContainer" சேர்த்துள்ளேன் -->
+    <div id="regionalPerformanceContainer" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Firebase Data இங்கே தானாகவே லோட் ஆகும் -->
+        <div class="col-span-3 text-center py-10 text-gray-400 italic">
+            Fetching real-time analytics...
+        </div>
+    </div>
+</section>
+
+    </main>
+
+     <script type="module" src="../js/firebase.js"></script>
+     
+    <script type="module" src="../js/admindashboard.js"></script>
+</body>
+</html>

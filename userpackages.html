@@ -1,0 +1,62 @@
+<div class="animate-in fade-in duration-700 w-full overflow-x-hidden">
+    <header class="mb-12">
+        <p class="text-gt-orange font-bold text-xs tracking-widest uppercase mb-2">Adventure Awaits</p>
+        <h1 class="font-headline text-5xl md:text-6xl font-bold text-gt-blue leading-tight mb-4">
+            Discover Uncharted <br> <span class="italic font-normal">Horizons</span>
+        </h1>
+        <p class="text-gray-500 max-w-2xl text-lg">Escape the ordinary with our masterfully curated expeditions, designed for the curious soul seeking authentic connection and refined wonder.</p>
+    </header>
+
+    <div class="w-full mb-10 overflow-hidden">
+        <div class="flex flex-nowrap gap-3 overflow-x-auto pb-4 custom-scrollbar scroll-smooth w-full" id="filterButtons" style="-webkit-overflow-scrolling: touch;">
+            <button class="px-6 py-2 rounded-full bg-gt-orange/10 text-gt-blue font-bold text-sm border border-gt-orange whitespace-nowrap flex-shrink-0 transition-all">All Packages</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Srilanka</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">India</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">France</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Spain</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Italy</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">United States</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">China</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Japan</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Thailand</button>
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Arab Emirates</button>       
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Switzerland</button>        
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Australia</button>        
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Greece</button>        
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Turkey</button>        
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Maldives</button>        
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Indonesia</button>        
+            <button class="px-6 py-2 rounded-full bg-white text-gray-400 font-medium text-sm border border-gt-border hover:border-gt-orange transition-all whitespace-nowrap flex-shrink-0">Singapore</button>
+        </div>
+    </div>
+
+    <div id="allPackagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 pb-10 w-full overflow-hidden">
+        <div class="col-span-full text-center py-20">
+            <p class="text-gray-400 animate-pulse text-lg font-medium">Curating your adventure...</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* 1. Hide scrollbar for the whole dashboard content if any */
+    #main-content {
+        overflow-x: hidden !important;
+    }
+
+    /* 2. Style the filter buttons scrollbar so it's thin */
+    #filterButtons::-webkit-scrollbar {
+        height: 4px;
+    }
+    #filterButtons::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 10px;
+    }
+
+    /* 3. Force the grid to stay within bounds */
+    #allPackagesGrid {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        display: grid !important;
+    }
+</style>

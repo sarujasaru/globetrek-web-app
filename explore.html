@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Experience | Azure Horizon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SweetAlert2 CSS & JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-font { font-family: 'Playfair Display', serif; }
+        .timeline-dot::before { content: ''; position: absolute; left: 7px; top: 24px; bottom: -24px; width: 2px; background: #E2E8F0; }
+        .timeline-item:last-child .timeline-dot::before { display: none; }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+
+    <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <div id="heroBg" class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 hover:scale-105"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="relative z-10 text-center text-white px-6">
+            <h1 id="displayTitle" class="text-5xl md:text-7xl serif-font mb-4">Loading...</h1>
+            <p id="displayTagline" class="text-lg md:text-xl font-medium tracking-wide opacity-90"></p>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            
+           <div class="lg:col-span-2 space-y-16">
+    
+    <div id="displayGallery" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+        </div>
+
+    <div class="space-y-6 pt-10 border-t border-slate-50">
+        <h2 class="text-3xl serif-font italic">The Experience</h2>
+        <p id="displayDesc" class="text-slate-500 leading-relaxed text-lg whitespace-pre-line"></p>
+        
+        <div id="displayHighlights" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-semibold text-blue-900">
+            </div>
+    </div>
+
+    <div class="space-y-10 pt-10">
+    <h2 class="text-3xl serif-font italic">Your Journey Map</h2>
+    <div id="displayItinerary" class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        </div>
+</div>
+</div>
+
+            <div class="lg:col-span-1">
+                <div class="sticky top-32 bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-2xl shadow-slate-200/50 space-y-8">
+                   <div class="space-y-4">
+    <div class="flex justify-between items-center">
+        <h3 id="cardPlaceName" class="font-bold text-3xl text-slate-900">...</h3>
+        
+        <div class="flex items-center gap-1 text-orange-500 bg-orange-50 px-3 py-1 rounded-full">
+            <span id="displayRating" class="font-bold text-lg"></span>
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <span class="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] block">Starts from</span>
+        <div class="flex items-baseline gap-1">
+            <span id="displayPrice" class="text-2xl font-black text-blue-900"></span>
+        </div>
+    </div>
+</div>
+
+                    <div class="grid grid-cols-2 gap-4 py-6 border-y border-slate-50 text-sm font-bold text-slate-600">
+                        <div class="flex items-center gap-3">🕒 <span id="displayDuration"></span></div>
+                        <div class="flex items-center gap-3">👥 Max <span id="displayMaxPeople"></span></div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-black uppercase tracking-widest text-emerald-600">What's Included</h4>
+                        <ul id="displayIncluded" class="text-sm text-slate-500 space-y-2"></ul>
+                    </div>
+
+                   <button id="bookBtn" onclick="handleBooking()" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold hover:bg-blue-600 transition-all shadow-xl">
+    Book This Experience
+</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../js/explore.js"></script>
+</body>
+</html>

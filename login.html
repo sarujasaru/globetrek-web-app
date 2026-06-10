@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | GlobeTrek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- SweetAlert2 CSS & JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+
+    <main class="flex flex-col md:flex-row flex-grow">
+        <div class="hidden md:flex flex-col justify-between w-1/2 bg-blue-900 p-12 text-white relative">
+            <div class="absolute inset-0 bg-[url('https://www.revv.co.in/blogs/wp-content/uploads/2019/11/self-drive-car-rental-delhi-gurgaon-noida_revv-blog.jpg')] bg-cover "></div>
+            <div class="relative z-10 font-bold text-xl">GlobeTrek</div>
+            <div class="relative z-10 max-w-md">
+                <h2 class="text-6xl font-bold leading-tight mb-6">Your next expedition begins right here.</h2>
+                <p class="text-blue-200">Join a community of modern explorers charting new territories across the globe.</p>
+            </div>
+            <div class="relative z-10 text-xs tracking-widest opacity-70">MT. COOK RANGES — NEW DELHI</div>
+        </div>
+
+        <div class="w-full md:w-1/2 flex flex-col justify-center px-12 py-16">
+            
+            <div class="max-w-sm w-full mx-auto">
+                <h1 class="text-4xl font-bold mb-2 flex items-center gap-3">
+    <img src="https://img.pikbest.com/origin/09/22/51/59JpIkbEsTVCG.png!sw800" alt="Icon" class="w-10 h-10 object-contain">
+    Welcome Back
+</h1>
+                <p class="text-gray-500 mb-8">Sign in to continue your curated journey.</p>
+                
+                <form id="loginForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">EMAIL ADDRESS</label>
+                        <input type="email" id="email" placeholder="explorer@example.com" required 
+                            class="w-full bg-gray-100 rounded-lg px-4 py-3 outline-none focus:ring-2 ring-blue-600">
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="block text-sm font-bold">PASSWORD</label>
+                            <a href="#" id="forgotPassword" class="text-xs font-bold text-blue-900">FORGOT PASSWORD?</a>
+                        </div>
+                        <div class="relative">
+                            <input type="password" id="password" placeholder="••••••••" required 
+                                class="w-full bg-gray-100 rounded-lg px-4 py-3 outline-none focus:ring-2 ring-blue-600">
+                           <button type="button" id="togglePassword" class="absolute right-4 top-3 text-gray-400 hover:text-blue-900 transition">
+                                  <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                 </svg>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2">Hint: Use at least 8 characters with letters and numbers.</p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold hover:bg-blue-800 transition">Login </button>
+                </form>
+
+                <div class="relative my-8">
+                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
+                   
+                </div>
+
+                
+
+                <p class="mt-8 text-sm text-center">New to GlobeTrek? <a href="register.html" class="font-bold text-orange-600">Create Account</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-12 text-sm text-gray-500 flex flex-col md:flex-row justify-between border-t border-gray-100 bg-white">
+        <div>GlobeTrek © 2024 GLOBETREK EXPEDITION CO.</div>
+        <div class="space-x-6 mt-4 md:mt-0">
+            <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a> <a href="#">Contact Support</a>
+        </div>
+    </footer>
+
+    <script type="module" src="../js/login.js"></script>
+</body>
+</html>

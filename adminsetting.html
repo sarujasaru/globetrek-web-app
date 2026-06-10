@@ -1,0 +1,71 @@
+<div class="p-8 bg-slate-50 min-h-screen">
+    <header class="mb-10">
+        <h1 class="font-headline text-6xl font-bold text-gt-blue leading-tight mb-4">System Settings</h1>
+        <p class="text-gray-500 text-sm mt-1">Configure the core engine of GlobeTrek. Adjust brand identity, security protocols, and data integrity parameters.</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-8">
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                <h2 class="font-bold text-lg text-gt-blue mb-6 flex items-center gap-2">⚙️ General Preferences</h2>
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Site Display Name</label>
+                        <input type="text" id="set-site-name" class="w-full mt-2 p-3 bg-gray-50 rounded-2xl border border-gray-100 outline-none" placeholder="e.g. GlobeTrek">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Primary Timezone</label>
+                        <input type="text" id="set-timezone" class="w-full mt-2 p-3 bg-gray-50 rounded-2xl border border-gray-100 outline-none" placeholder="e.g. UTC-8">
+                    </div>
+                </div>
+                <label class="text-[10px] font-bold text-gray-400 uppercase">Support Email Address</label>
+                <input type="email" id="set-support-email" class="w-full mt-2 p-3 bg-gray-50 rounded-2xl border border-gray-100 outline-none mb-4" placeholder="expeditions@globetrek.admin">
+               <button onclick="saveSystemSettings()" class="bg-blue-950 text-white px-8 py-3 rounded-2xl font-bold text-sm">Save Changes</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <h2 class="font-bold text-lg text-gt-blue mb-6">🛡️ Security Protocols</h2>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <div><p class="text-sm font-bold">Two-Factor Authentication</p><p class="text-[10px] text-gray-400">Require OTP via email or app.</p></div>
+                            <input type="checkbox" id="set-2fa" class="w-10 h-6 accent-blue-900">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div><p class="text-sm font-bold">Session Timeouts</p><p class="text-[10px] text-gray-400">Auto-logout after 30 mins.</p></div>
+                            <input type="checkbox" id="set-session-timeout" class="w-10 h-6 accent-blue-900">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <h2 class="font-bold text-lg text-gt-blue mb-6">🗄️ Data Management</h2>
+                    <div class="space-y-4">
+                        <div class="p-4 border rounded-2xl"><p class="text-xs font-bold">Automated Cloud Backups</p><p class="text-[10px] text-gray-400">Daily snapshots to AWS S3.</p></div>
+                        <button onclick="flushSandboxData()" class="w-full text-left p-4 bg-red-50 rounded-2xl border border-red-100 group hover:bg-red-100 transition-all">
+                            <p class="text-xs font-bold text-red-700">Flush Sandbox Data</p>
+                            <p class="text-[10px] text-red-400">Wipe all non-production data.</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-blue-950 p-8 rounded-[2rem] text-white">
+                <h2 class="font-bold text-lg mb-6">System Status</h2>
+                <div class="space-y-4 text-sm font-medium">
+                    <div class="flex justify-between"><span>Health</span><span class="text-green-400 font-bold">● Optimal</span></div>
+                    <div class="flex justify-between"><span>Backup</span><span class="text-white/80">Just now</span></div>
+                    <div class="flex justify-between"><span>Users</span><span id="stat-total-users" class="text-white/80">0</span></div>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                <h2 class="font-bold text-xs text-gt-blue mb-4 uppercase">Quick Actions</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="localStorage.clear(); alert('Cache Purged!');" class="p-3 bg-gray-50 rounded-2xl text-[10px] font-bold border hover:bg-gray-100">🔄 PURGE CACHE</button>
+                    <button class="p-3 bg-gray-50 rounded-2xl text-[10px] font-bold border hover:bg-gray-100">⚙️ CHECK UPDATES</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

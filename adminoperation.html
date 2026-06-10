@@ -1,0 +1,53 @@
+<div class="p-8 bg-slate-50 min-h-screen">
+    <header class="mb-10">
+        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">GlobeTrek / Operations</p>
+        <h1 class="font-headline text-6xl font-bold text-gt-blue leading-tight mb-4">Operational Control</h1>
+        <p class="text-gray-500 text-sm mt-1">Real-time logistics and expedition management</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-8">
+            <!-- Map Section -->
+           <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="font-bold text-lg text-gt-blue flex items-center gap-2">
+            <span class="text-blue-600">📍</span> Live Operations Map
+        </h2>
+        <div class="flex gap-2">
+            <span id="active-trips-count" class="bg-blue-50 text-blue-700 px-3 py-1 rounded-lg text-[10px] font-bold">0 ACTIVE TRIPS</span>
+            <span id="weather-alerts-count" class="bg-orange-50 text-orange-700 px-3 py-1 rounded-lg text-[10px] font-bold">0 WEATHER ALERTS</span>
+        </div>
+    </div>
+    <!-- மேப் இங்கே லோட் ஆகும். இதற்கான உயரம் (Height) கொடுக்கப்பட்டுள்ளது -->
+    <div id="map" class="w-full h-80 rounded-[1.5rem] z-10 border border-gray-100"></div>
+</div>
+
+            <!-- Booking Flow Pipeline -->
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                <h2 class="font-bold text-lg text-gt-blue mb-6">Booking Flow Pipeline</h2>
+                <div id="booking-pipeline" class="grid grid-cols-5 gap-4">
+                    <div class="border-l-4 border-blue-600 pl-4">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">Pending</p>
+                        <h3 id="pipe-pending" class="text-2xl font-bold">0</h3>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">Confirmed</p>
+                        <h3 id="pipe-confirmed" class="text-2xl font-bold">0</h3>
+                    </div>
+                    <!-- மற்ற நிலைகளை JS மூலம் அல்லது நேரடியாக இங்கே சேர்க்கலாம் -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Critical Tasks Section -->
+        <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+            <h2 class="font-bold text-lg text-gt-blue mb-6">Critical Tasks</h2>
+            <div id="critical-tasks-list" class="space-y-4">
+                <!-- இங்கே Tasks லோட் ஆகும் -->
+            </div>
+            <button class="w-full mt-6 py-3 border-2 border-dashed border-gray-200 rounded-2xl text-gray-400 text-sm font-bold hover:bg-gray-50 transition-all">
+                + Assign Task
+            </button>
+        </div>
+    </div>
+</div>
